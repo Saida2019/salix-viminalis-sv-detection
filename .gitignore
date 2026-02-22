@@ -1,0 +1,32 @@
+# Mac system
+.DS_Store
+
+# Logs
+*.log
+slurm-*.out
+
+# Nextflow
+.nextflow*
+work/
+trace.txt
+timeline.html
+report.html
+
+# Bioinformatics large files
+*.bam
+*.bai
+*.cram
+*.crai
+*.vcf
+*.vcf.gz
+*.tbi
+*.gfa
+*.gaf
+*.xg
+*.gbwt
+*.min
+*.dist
+
+# Results
+results/
+data/
