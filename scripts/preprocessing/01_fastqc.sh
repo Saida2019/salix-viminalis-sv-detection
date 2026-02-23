@@ -41,7 +41,7 @@ if [[ -z "${R1:-}" || -z "${R2:-}" ]]; then
   exit 1
 fi
 
-# Node-local scratch (PDC_TMP)
+# Node-local scratch (PDC_TMP in Dardel))
 TMPDIR="${PDC_TMP:-/tmp}/${SLURM_JOB_ID}_${SLURM_ARRAY_TASK_ID}"
 mkdir -p "$TMPDIR"
 trap 'rm -rf "$TMPDIR"' EXIT
