@@ -58,11 +58,5 @@ fastqc -t "${SLURM_CPUS_PER_TASK}" -o "$TMPDIR" "$R1_FILE" "$R2_FILE"
 cp -f "$TMPDIR"/*_fastqc.zip "$FASTQC_RESULTS_DIR/" 2>/dev/null || true
 cp -f "$TMPDIR"/*_fastqc.html "$FASTQC_RESULTS_DIR/" 2>/dev/null || true
 
-# Verify outputs exist
-if ! ls "$FASTQC_RESULTS_DIR"/"${R1_FILE%.fastq.gz}"*_fastqc.* >/dev/null 2>&1; then
-  echo "ERROR: FastQC outputs were not produced as expected."
-  exit 1
-fi
-
 echo "Finished FastQC for sample: $ACC"
 

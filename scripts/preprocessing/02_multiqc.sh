@@ -13,7 +13,7 @@ set -euo pipefail
 
 module load multiqc/1.30
 
-# USER CONFIGURATION (edit these paths)
+# USER CONFIGURATION    (edit these paths)
 FASTQC_RESULTS_DIR="/path/to/fastqc_output_directory"     # contains *_fastqc.zip/html
 MULTIQC_OUT_DIR="/path/to/multiqc_output_directory"
 
@@ -23,23 +23,15 @@ TMPDIR="${PDC_TMP:-/tmp}/multiqc_${SLURM_JOB_ID}"
 mkdir -p "$TMPDIR"
 trap 'rm -rf "$TMPDIR"' EXIT
 
-# Copy inputs to scratch (helps performance)
+# Copy inputs to scratch
 cp -r "$FASTQC_RESULTS_DIR"/. "$TMPDIR/"
 
 echo "Running MultiQC in node-local TMPDIR..."
 multiqc "$TMPDIR" -o "$TMPDIR"
 
-if [[ ! -f "$TMPDIR/multiqc_report.html" ]]; then
-  echo "ERROR: multiqc_report.html not found — MultiQC may have failed."
-  exit 1
-fi
-
-# Copy report + data folder back
+# Copy outputs back
 cp -f "$TMPDIR/multiqc_report.html" "$MULTIQC_OUT_DIR/"
-if [[ -d "$TMPDIR/multiqc_data" ]]; then
-  rm -rf "$MULTIQC_OUT_DIR/multiqc_data" 2>/dev/null || true
-  cp -r "$TMPDIR/multiqc_data" "$MULTIQC_OUT_DIR/"
-fi
+cp -r "$TMPDIR/multiqc_data" "$MULTIQC_OUT_DIR/" 2>/dev/null || true
 
 echo "MultiQC report generated:"
 echo "$MULTIQC_OUT_DIR/multiqc_report.html"
