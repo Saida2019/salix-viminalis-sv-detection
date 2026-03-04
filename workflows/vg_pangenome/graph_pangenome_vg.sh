@@ -6,7 +6,7 @@
 #SBATCH --cpus-per-task=128
 #SBATCH -o /cfs/klemming/projects/supr/naiss2025-23-666/Saida/Scripts/vcf_output/PANGENOME/graph_pangenome/05_logs/%x_%j.out
 #SBATCH -e /cfs/klemming/projects/supr/naiss2025-23-666/Saida/Scripts/vcf_output/PANGENOME/graph_pangenome/05_logs/%x_%j.err
-#SBATCH --mail-user=saida.sharifova.1623@student.uu.se
+#SBATCH --mail-user="my_email" #change
 #SBATCH --mail-type=END,FAIL
 
 set -euo pipefail
