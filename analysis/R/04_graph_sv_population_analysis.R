@@ -216,7 +216,7 @@ sv_af_pop <- sv_long_pop %>%
 p2 <- ggplot(sv_af_pop, aes(x = AF, fill = SVTYPE)) +
   geom_histogram(bins = 30, color = "white") +
   facet_wrap(~ population, scales = "free_y") +
-  scale_fill_manual(values = c("DEL" = "#1B9E77", "INS" = "#D95F02")) +
+  scale_fill_manual(values = c("DEL" = "#3C5488", "INS" = "#D95F02")) +
   theme_classic()
 
 ggsave("AF_by_population.pdf", plot = p2, width = 10, height = 6)
@@ -231,7 +231,7 @@ sv_maf_pop <- sv_af_pop %>%
 p3 <- ggplot(sv_maf_pop, aes(x = MAF, fill = SVTYPE)) +
   geom_histogram(bins = 30, color = "white") +
   facet_wrap(~ population, scales = "free_y") +
-  scale_fill_manual(values = c("DEL" = "#1B9E77", "INS" = "#D95F02")) +
+  scale_fill_manual(values = c("DEL" = "#3C5488", "INS" = "#D95F02")) +
   theme_classic()
 
 ggsave("MAF_by_population.pdf", plot = p3, width = 10, height = 6)
